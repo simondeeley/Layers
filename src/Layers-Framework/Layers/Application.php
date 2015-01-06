@@ -13,10 +13,9 @@
 
 namespace Layers\Layers;
 
-use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 /**
- * Applicatio.php
+ * Application.php
  *
  * Layers Application
  */
