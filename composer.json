@@ -1,0 +1,37 @@
+{
+    "name": "unwarysheep/layers",
+    "description": "Micro Framework Experiment",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Simon Deeley",
+            "email": "unwarysheep@icloud.com",
+            "homepage": "https://gitgub.com/unwarysheep",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+                "": [
+                        "lib/",
+                        "src/"
+                    ]
+            },
+        "psr-4": { 
+                "":
+                    [
+                        "src/",
+                        "lib/"
+                    ],
+                "Layers\\": "src/Layers-Framework/"
+            }
+    },
+    "require": {
+        "symfony/var-dumper": "2.6.*",
+        "symfony/http-foundation": "2.6.*",
+        "symfony/http-kernel": "2.6.*",
+        "symfony/class-loader": "2.6.*",
+        "pimple/pimple": "~3.0",
+        "psr/log": "1.0.x-dev"
+    }
+}
