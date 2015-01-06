@@ -17,13 +17,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Pimple\Container;
 use Layers\Layers\Application;
+use Layers\Priority\Priority;
 
 $app = new Application(new Container(), null);
 
 $app->add(function () use (&$container) {
         $container['response'] = 'Hello World';
     },
-    2
+    PRIORITY::FIRST
 );
 
 $app->add(function () use (&$container) {
@@ -32,7 +33,7 @@ $app->add(function () use (&$container) {
         $response->setContent($container['response']);
         $response->send();
     },
-    1
+    PRIORITY::LAST
 );
 
 

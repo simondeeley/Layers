@@ -13,6 +13,8 @@
 
 namespace Layers\Layers;
 
+use Layers\Priority\Priority;
+
 
 /**
  * Application.php
@@ -55,7 +57,7 @@ class Application {
         
         $this->stack->insert(
             $object,
-            $priority
+            Priority::normalize($priority)
         );
         
         return $this;
