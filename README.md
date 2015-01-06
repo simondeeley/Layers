@@ -7,16 +7,15 @@ Please note this repository is entirely experimental - please feel free to fork 
 
 
 ### Usage
-`    
-    $app->add(function () use (&$container) {
-        
-       $container['output'] = 'Hello World!/n';
-        
-    }, PRIORITY::FIRST);
     
-    $app->add(function() use (&$container) {
+    `$app->add(function () use (&$container) {`
         
-        echo $container['output'];
+       `$container['output'] = 'Hello World!/n';`
         
-    }, PRIORITY::LAST);
-`
+    `}, PRIORITY::FIRST);`
+    
+    `$app->add(function() use (&$container) {`
+        
+        `echo $container['output'];`
+        
+    `}, PRIORITY::LAST);`
