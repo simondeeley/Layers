@@ -16,25 +16,23 @@ require_once __DIR__ . '/../app/bootstrap.php';
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Pimple\Container;
-use Layers\Layers\Application;
-use Layers\Priority\Priority;
+use Layers\Application;
+use Layers\LayerCollection;
 
-$app = new Application(new Container(), null);
+$collection = new LayerCollection();
 
-$app->add(function () use (&$container) {
+$collection
+    ->add(function () use (&$container) {
         $container['response'] = 'Hello World';
-    },
-    PRIORITY::FIRST
-);
-
-$app->add(function () use (&$container) {
+    })
+    ->add(function () use (&$container) {
         
         $response = new Response();
         $response->setContent($container['response']);
         $response->send();
-    },
-    PRIORITY::LAST
-);
+    })
+;
 
+$app = new Application($collection, new Container());
 
 $app->run();
