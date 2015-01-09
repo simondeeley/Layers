@@ -13,7 +13,6 @@
 
 namespace Layers\Collection;
 
-
 /**
  * LayerCollection
  *
@@ -25,12 +24,12 @@ class LayerCollection implements CollectionInterface, \Countable, \IteratorAggre
      * @var $serial
      */
     protected $serial = PHP_INT_MAX;
-    
+
     /**
      * @var $queue
      */
     protected $queue;
-    
+
     /**
      * Constructor
      *
@@ -39,20 +38,20 @@ class LayerCollection implements CollectionInterface, \Countable, \IteratorAggre
     {
         $this->queue = new \SplPriorityQueue();
     }
-    
+
     /**
      * {@inheritdoc}
      *
      */
     public function extract()
-    {        
+    {
         if (false === $this->queue->valid()) {
             return false;
         }
-        
+
         return $this->queue->extract();
     }
-    
+
     /**
      * {@inheritdoc}
      *
@@ -65,8 +64,8 @@ class LayerCollection implements CollectionInterface, \Countable, \IteratorAggre
                 gettype($object)
             ));
         }
-        
-        if (false === is_string($uniquekey) && false === is_null($uniquekey) ) {
+
+        if (false === is_string($uniquekey) && false === is_null($uniquekey)) {
             throw new \InvalidArgumentException(sprintf(
                 'The value for $uniquekey must be a string or null, \'%s\' given',
                 gettype($uniquekey)
@@ -89,7 +88,7 @@ class LayerCollection implements CollectionInterface, \Countable, \IteratorAggre
     {
         return $this->queue->count();
     }
-    
+
     /**
      * Returns the queued collection
      *
@@ -100,7 +99,7 @@ class LayerCollection implements CollectionInterface, \Countable, \IteratorAggre
 
         return clone $this->queue;
     }
-    
+
     /**
      * Checks to see if the queue is empty
      *

@@ -32,12 +32,12 @@ abstract class Core
      * @var $shared
      */
     protected $shared;
-    
+
     /**
      * @var $workingDir
      */
     protected $workingDir;
-    
+
     /**
      * Sets the Collection
      *
@@ -47,7 +47,7 @@ abstract class Core
     {
         $this->layers = $layers;
     }
-    
+
     /**
      * Returns the current collection
      *
@@ -56,7 +56,7 @@ abstract class Core
     {
         return $this->collection;
     }
-    
+
     /**
      * Sets the shared object to $shared
      *
@@ -66,7 +66,7 @@ abstract class Core
     {
         $this->shared = $shared;
     }
-    
+
     /**
      * Returns the shared object
      *
@@ -75,7 +75,7 @@ abstract class Core
     {
         return $this->shared;
     }
-    
+
     /**
      * Sets the exception_handler
      *
@@ -90,13 +90,12 @@ abstract class Core
      *
      */
     public function run()
-    {        
+    {
         while (false !== $layer = $this->layers->extract()) {
-        
             call_user_func($layer, $this->shared);
         }
     }
-    
+
     /**
      * Sets the working directory
      * Only available at instantiation
@@ -108,4 +107,3 @@ abstract class Core
         return realpath($path);
     }
 }
-

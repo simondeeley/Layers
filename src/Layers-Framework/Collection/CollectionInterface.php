@@ -18,8 +18,8 @@ namespace Layers\Collection;
  *
  * Defines methods that allow access to properties of a LayerCollection
  */
-interface CollectionInterface {
-
+interface CollectionInterface
+{
     /**
      * Builds the layered kernel
      *
@@ -31,16 +31,15 @@ interface CollectionInterface {
      * Registers a loader to build a heap from a file
      *
      * @var $loader     A valid file loader
-     * @return $this    Return $this object
+     * @return $this Return $this object
      */
     //public function registerLoader($loader);
-       
+
     /**
      * Adds a callable to the heap
      *
-     * @return $this    Return $this object
+     * @return $this             Return $this object
      * @throws \BuilderException if an error occurs
      */
     public function add($layer);
-
 }

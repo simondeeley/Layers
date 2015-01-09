@@ -13,13 +13,12 @@
 
 namespace Layers\Handler;
 
-
-class ExceptionHandler {
-
+class ExceptionHandler
+{
     public function handle($exception)
     {
-    $traceline = "#%s %s(%s): %s(%s)<br />";
-    $msg = "<html>
+        $traceline = "#%s %s(%s): %s(%s)<br />";
+        $msg = "<html>
     <head><title>Oops! Something has gone wrong.</title></head>
     <body><h1>Ooops!</h1>
     <h2>%s</h2>
@@ -30,26 +29,26 @@ class ExceptionHandler {
 
     // alter your trace as you please, here
     $trace = $exception->getTrace();
-    foreach ($trace as $key => $stackPoint) {
-        // I'm converting arguments to their type
+        foreach ($trace as $key => $stackPoint) {
+            // I'm converting arguments to their type
         // (prevents passwords from ever getting logged as anything other than 'string')
         $trace[$key]['args'] = array_map('gettype', $trace[$key]['args']);
-    }
+        }
 
     // build your tracelines
     $result = array();
-    foreach ($trace as $key => $stackPoint) {
-        $result[] = sprintf(
+        foreach ($trace as $key => $stackPoint) {
+            $result[] = sprintf(
             $traceline,
             $key,
-            @$stackPoint['file'],
-            @$stackPoint['line'],
+            $stackPoint['file'],
+            $stackPoint['line'],
             $stackPoint['function'],
             implode(', ', $stackPoint['args'])
         );
-    }
+        }
     // trace always ends with {main}
-    $result[] = '#' . ++$key . ' {main}';
+    $result[] = '#'.++$key.' {main}';
 
     // write tracelines into main template
     $msg = sprintf(
@@ -63,6 +62,5 @@ class ExceptionHandler {
 
     // log or echo as you please
     print $msg;
-    exit();
     }
 }
