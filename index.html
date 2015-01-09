@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Layers by unwarysheep</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Layers</h1>
+        <p>A dive into the world of micro frameworks</p>
+
+        <p class="view"><a href="https://github.com/unwarysheep/Layers">View the Project on GitHub <small>unwarysheep/Layers</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/unwarysheep/Layers/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/unwarysheep/Layers/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/unwarysheep/Layers">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="layers" class="anchor" href="#layers" aria-hidden="true"><span class="octicon octicon-link"></span></a>LAYERS</h1>
+
+<p><a href="https://insight.sensiolabs.com/projects/3a360f7f-4cff-41a8-b4ae-10b1bf031be4"><img src="https://insight.sensiolabs.com/projects/3a360f7f-4cff-41a8-b4ae-10b1bf031be4/small.png" alt="SensioLabsInsight"></a></p>
+
+<p>A dive into the world of micro frameworks</p>
+
+<p>Please note this repository is entirely experimental - please feel free to fork and suggest improvements!</p>
+
+<h3>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h3>
+
+<p>The idea is to build a simple iterator that takes a set of instructions that have been prioritised to execute in a certain order and then execute those functions at run time.</p>
+
+<p>Here's a full-working example</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s2"><span class="pl-k">require_once</span> <span class="pl-c1">__DIR__</span> <span class="pl-k">.</span> <span class="pl-s1"><span class="pl-pds">'</span>/../app/bootstrap.php<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s2"><span class="pl-k">require_once</span> <span class="pl-c1">__DIR__</span> <span class="pl-k">.</span> <span class="pl-s1"><span class="pl-pds">'</span>/../app/AppCore.php<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s2"></span>
+<span class="pl-s2"><span class="pl-k">use</span> <span class="pl-s3">Layers\Collection\LayerCollection</span>;</span>
+<span class="pl-s2"></span>
+<span class="pl-s2"><span class="pl-vo">$app</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-s3">AppCore</span>(<span class="pl-c1">true</span>);</span>
+<span class="pl-s2"><span class="pl-vo">$app</span><span class="pl-k">-&gt;</span>setShared(<span class="pl-k">new</span> <span class="pl-s3">array</span>());</span>
+<span class="pl-s2"></span>
+<span class="pl-s2"><span class="pl-vo">$collection</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-s3">LayerCollection</span>();</span>
+<span class="pl-s2"></span>
+<span class="pl-s2"><span class="pl-vo">$collection</span></span>
+<span class="pl-s2">    <span class="pl-k">-&gt;</span>add(<span class="pl-st">function</span> () <span class="pl-k">use</span> (<span class="pl-s">&amp;</span><span class="pl-vo">$container</span>) {</span>
+<span class="pl-s2">        <span class="pl-vo">$container</span>[<span class="pl-s1"><span class="pl-pds">'</span>response<span class="pl-pds">'</span></span>] <span class="pl-k">=</span> <span class="pl-s3">array</span>();</span>
+<span class="pl-s2">    },<span class="pl-c1">110</span>)</span>
+<span class="pl-s2">    <span class="pl-k">-&gt;</span>add(<span class="pl-st">function</span> () <span class="pl-k">use</span> (<span class="pl-s">&amp;</span><span class="pl-vo">$container</span>) {</span>
+<span class="pl-s2">        <span class="pl-vo">$container</span>[<span class="pl-s1"><span class="pl-pds">'</span>response<span class="pl-pds">'</span></span>][<span class="pl-c1">1</span>] <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>Second<span class="pl-pds">'</span></span>;  </span>
+<span class="pl-s2">    },<span class="pl-c1">100</span>)</span>
+<span class="pl-s2">    <span class="pl-k">-&gt;</span>add(<span class="pl-st">function</span> () <span class="pl-k">use</span> (<span class="pl-s">&amp;</span><span class="pl-vo">$container</span>) {</span>
+<span class="pl-s2">        <span class="pl-vo">$container</span>[<span class="pl-s1"><span class="pl-pds">'</span>response<span class="pl-pds">'</span></span>][<span class="pl-c1">2</span>] <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>First<span class="pl-pds">'</span></span>;  </span>
+<span class="pl-s2">    },<span class="pl-c1">109</span>)</span>
+<span class="pl-s2">    <span class="pl-k">-&gt;</span>add(<span class="pl-st">function</span> () <span class="pl-k">use</span> (<span class="pl-s">&amp;</span><span class="pl-vo">$container</span>) {</span>
+<span class="pl-s2">        <span class="pl-vo">$container</span>[<span class="pl-s1"><span class="pl-pds">'</span>response<span class="pl-pds">'</span></span>][<span class="pl-c1">3</span>] <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">'</span>Third<span class="pl-pds">'</span></span>;  </span>
+<span class="pl-s2">    },<span class="pl-c1">100</span>)</span>
+<span class="pl-s2">    <span class="pl-k">-&gt;</span>add(<span class="pl-st">function</span> () <span class="pl-k">use</span> (<span class="pl-s">&amp;</span><span class="pl-vo">$container</span>) {</span>
+<span class="pl-s2">        <span class="pl-s3">var_dump</span>(<span class="pl-vo">$container</span>);</span>
+<span class="pl-s2">    })</span>
+<span class="pl-s2">;</span>
+<span class="pl-s2"></span>
+<span class="pl-s2"><span class="pl-vo">$app</span><span class="pl-k">-&gt;</span>setLayers(<span class="pl-vo">$collection</span>);</span>
+<span class="pl-s2"><span class="pl-vo">$app</span><span class="pl-k">-&gt;</span>run();</span></pre></div>
+
+<p>Breaking it down, we have the following happening:
+1. First we initialise a new instance of AppCore
+1. We then create a simple array for sharing - a dependency injection container using <code>$app-&gt;setShared()</code> You could use something more sophisticated but an array is the simplest of all and will suffice for the demo.
+1. Next we need to build our collection of functions, that's where the <code>new LayerCollection()</code> comes in. It has a simple method <code>add</code> to push items onto the priority stack.
+1. You'll notice that we've used closures to create the callbacks for when the stack is run. The referenced 'container' is then accessible to all functions in the app as it is executed.
+1. Finally, we add the collection to the app and hit run!</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/unwarysheep">unwarysheep</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
