@@ -45,6 +45,7 @@ $app->setLayers($collection);
 $app->run();
 ```
 Breaking it down, we have the following happening:
+
 1. First we initialise a new instance of AppCore
 2. We then create a simple array for sharing - a dependency injection container using `$app->setShared()` You could use something more sophisticated but an array is the simplest of all and will suffice for the demo.
 3. Next we need to build our collection of functions, that's where the `new LayerCollection()` comes in. It has a simple method `add` to push items onto the priority stack.
