@@ -75,12 +75,15 @@
 <span class="pl-s2"><span class="pl-vo">$app</span><span class="pl-k">-&gt;</span>setLayers(<span class="pl-vo">$collection</span>);</span>
 <span class="pl-s2"><span class="pl-vo">$app</span><span class="pl-k">-&gt;</span>run();</span></pre></div>
 
-<p>Breaking it down, we have the following happening:
-1. First we initialise a new instance of AppCore
-1. We then create a simple array for sharing - a dependency injection container using <code>$app-&gt;setShared()</code> You could use something more sophisticated but an array is the simplest of all and will suffice for the demo.
-1. Next we need to build our collection of functions, that's where the <code>new LayerCollection()</code> comes in. It has a simple method <code>add</code> to push items onto the priority stack.
-1. You'll notice that we've used closures to create the callbacks for when the stack is run. The referenced 'container' is then accessible to all functions in the app as it is executed.
-1. Finally, we add the collection to the app and hit run!</p>
+<p>Breaking it down, we have the following happening:</p>
+
+<ol>
+<li>First we initialise a new instance of AppCore</li>
+<li>We then create a simple array for sharing - a dependency injection container using <code>$app-&gt;setShared()</code> You could use something more sophisticated but an array is the simplest of all and will suffice for the demo.</li>
+<li>Next we need to build our collection of functions, that's where the <code>new LayerCollection()</code> comes in. It has a simple method <code>add</code> to push items onto the priority stack.</li>
+<li>You'll notice that we've used closures to create the callbacks for when the stack is run. The referenced 'container' is then accessible to all functions in the app as it is executed.</li>
+<li>Finally, we add the collection to the app and hit run!</li>
+</ol>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/unwarysheep">unwarysheep</a></p>
