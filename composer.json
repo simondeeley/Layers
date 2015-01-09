@@ -23,14 +23,12 @@
                         "src/",
                         "lib/"
                     ],
-                "Layers\\": "src/Layers-Framework/"
+                "Layers\\": "src/Layers-Framework/",
+                "Acme\\": "src/Acme/"
             }
     },
     "require": {
         "symfony/var-dumper": "2.6.*",
-        "symfony/http-foundation": "2.6.*",
-        "symfony/http-kernel": "2.6.*",
-        "symfony/class-loader": "2.6.*",
         "pimple/pimple": "~3.0",
         "psr/log": "1.0.x-dev"
     }

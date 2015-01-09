@@ -12,27 +12,35 @@
  */
 
 require_once __DIR__ . '/../app/bootstrap.php';
+require_once __DIR__ . '/../app/AppCore.php';
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Pimple\Container;
-use Layers\Application;
-use Layers\LayerCollection;
+use Layers\Collection\LayerCollection;
+use Acme\AcmeDemo\AcmeDemo;
+
+$app = new AppCore(true);
+$app->setShared(new Container());
 
 $collection = new LayerCollection();
 
 $collection
     ->add(function () use (&$container) {
-        $container['response'] = 'Hello World';
-    })
+        $container['response'] = array();
+    },110)
     ->add(function () use (&$container) {
-        
-        $response = new Response();
-        $response->setContent($container['response']);
-        $response->send();
+        $container['response'][1] = 'Second';  
+    },100)
+    ->add(function () use (&$container) {
+        $container['response'][2] = 'First';  
+    },109)
+    ->add(function () use (&$container) {
+        $container['response'][3] = 'Third';  
+    },100)
+    ->add(function () use (&$container) {
+        $demo = new AcmeDemo($container);
+        $demo->foo();
     })
 ;
 
-$app = new Application($collection, new Container());
-
+$app->setLayers($collection);
 $app->run();
