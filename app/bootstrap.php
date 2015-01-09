@@ -13,7 +13,3 @@
 
 
 require_once __DIR__ . '/../vendor/autoload.php';
-
-use Layers\ErrorHandler\ErrorHandler;
-
-set_error_handler(array(new ErrorHandler, 'handle'));
